@@ -1,26 +1,209 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* surfaces — warm dark canvas */
+  --color-bg-0: #0a0908;
+  --color-bg-1: #121110;
+  --color-bg-2: #1a1815;
+  --color-bg-3: #232019;
+  --color-glass: rgba(18, 17, 16, 0.7);
+
+  /* borders */
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-strong: rgba(255, 255, 255, 0.10);
+  --color-border-warm: rgba(255, 106, 53, 0.30);
+  --color-border-hot: rgba(255, 106, 53, 0.45);
+
+  /* text */
+  --color-text-1: #f0e8d8;
+  --color-text-2: #a59b8a;
+  --color-text-3: #5a544a;
+
+  /* accents — ember-dominant */
+  --color-warm: #ff6a35;          /* primary ember */
+  --color-warm-soft: #ff8a5c;
+  --color-amber: #f5a06b;
+  --color-amber-soft: #f8b889;
+  --color-mint: #5ee6a8;          /* reserved for "online" / live indicators */
+  --color-cyan: #6ee7ff;
+  --color-violet: #b794f6;
+  --color-rose: #f38ba8;
+
+  /* glows */
+  --color-glow-warm: rgba(255, 106, 53, 0.35);
+  --color-glow-amber: rgba(245, 160, 107, 0.30);
+  --color-glow-mint: rgba(94, 230, 168, 0.30);
+
+  /* fonts */
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-0);
+  color: var(--color-text-1);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  font-feature-settings: "calt", "ss01", "zero", "cv11";
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: contain;
 }
+
+/* ---- selection ---- */
+::selection {
+  background: var(--color-warm);
+  color: var(--color-bg-0);
+}
+
+/* ---- scrollbars (webkit) ---- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-3);
+}
+
+/* ---- focus rings ---- */
+:where(button, a, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-warm);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---- caret blink ---- */
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret-blink::after {
+  content: "▮";
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--color-warm);
+  animation: caret-blink 1.05s steps(1, end) infinite;
+}
+
+/* ---- subtle hover glow utilities ---- */
+.glow-warm:hover {
+  box-shadow: 0 0 0 1px var(--color-border-hot), 0 0 22px -4px var(--color-glow-warm);
+}
+
+/* ---- ambient grid background — applied to body via fixed pseudo-element ---- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: 0 0;
+  mask-image: radial-gradient(circle at 30% 20%, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 30% 20%, black 0%, transparent 80%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("/noise.svg");
+  background-size: 200px 200px;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* ---- scanline overlay (opt-in via .retro on <html>) ---- */
+html.retro::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 3px,
+    transparent 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ---- typing animations ---- */
+@keyframes type-line {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.line-in {
+  animation: type-line 200ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ---- shimmer (for loading bars) ---- */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--color-glow-warm), transparent);
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* ---- soft pulse ---- */
+@keyframes soft-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.soft-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .caret-blink::after {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ---- hide scrollbar utility ---- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* ---- text balance for headings ---- */
+.balance { text-wrap: balance; }

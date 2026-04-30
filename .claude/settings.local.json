@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000)",
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__navigate_page",
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__take_screenshot",
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_pages",
+      "Bash(curl -s -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"What does antm.ai do?\",\"model\":\"z-ai/glm4.7\",\"history\":[]}' --no-buffer)",
+      "Bash(open *)",
+      "Bash(curl -s https://blog.sanathswaroop.com/rss.xml)"
+    ]
+  }
+}
