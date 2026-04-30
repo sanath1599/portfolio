@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,css,md,json}\""
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "fast-xml-parser": "^5.7.2",
     "lucide-react": "^1.14.0",
     "motion": "^12.38.0",
