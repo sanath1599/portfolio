@@ -8,7 +8,7 @@ export const NIM_MODELS: { id: NimModel; label: string; alias: string }[] = [
   { id: "deepseek-v3.2", label: "deepseek-v3.2", alias: "deepseek" },
 ];
 
-export const DEFAULT_MODEL: NimModel = "glm-4.7";
+export const DEFAULT_MODEL: NimModel = "gemma4:31b";
 
 // NIM fallback model IDs used when Ollama is rate-limited
 export const NIM_FALLBACK_MODELS: Record<NimModel, string> = {

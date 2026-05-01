@@ -41,7 +41,7 @@ export async function callNIM(
       tools: tools.length > 0 ? tools : undefined,
       tool_choice: tools.length > 0 ? "auto" : undefined,
       stream: false,
-      max_tokens: 8192,
+      max_tokens: 6000,
       temperature: 0.6,
     }),
   });
@@ -72,7 +72,7 @@ export async function streamNIM(
       tools: tools.length > 0 ? tools : undefined,
       tool_choice: tools.length > 0 ? "auto" : undefined,
       stream: true,
-      max_tokens: 8192,
+      max_tokens: 6000,
       temperature: 0.6,
       reasoning_effort: "low",
     }),

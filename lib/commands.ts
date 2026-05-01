@@ -114,8 +114,8 @@ export const commandsList: CommandSpec[] = [
     slashAliases: ["/model"],
     patterns: [/^\/model\b/i],
     keywords: ["model", "switch", "glm", "gemma", "mistral", "llm"],
-    description: "select AI model · glm | gemma | mistral",
-    arg: { name: "model", values: ["glm", "gemma", "mistral"] },
+    description: "select AI model · glm | gemma | deepseek",
+    arg: { name: "model", values: ["glm", "gemma", "deepseek"] },
   },
   {
     id: "coffee",

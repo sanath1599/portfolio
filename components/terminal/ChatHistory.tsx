@@ -191,7 +191,7 @@ function ModelPicker({ current }: { current: NimModel }) {
           );
         })}
       </div>
-      <p className="text-[11px] text-text-3">or type <span className="text-text-2">/model glm</span> · <span className="text-text-2">/model gemma</span> · <span className="text-text-2">/model mistral</span></p>
+      <p className="text-[11px] text-text-3">or type <span className="text-text-2">/model glm</span> · <span className="text-text-2">/model gemma</span> · <span className="text-text-2">/model deepseek</span></p>
     </div>
   );
 }
