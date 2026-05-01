@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CursorGlow } from "@/components/ambient/CursorGlow";
+import { Analytics } from "@vercel/analytics/next";
 
 const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body className="relative min-h-full overflow-x-hidden">
         <CursorGlow />
         <main className="relative z-10 min-h-full">{children}</main>
+        <Analytics />
       </body>
     </html>
   );
