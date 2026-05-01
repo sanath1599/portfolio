@@ -7,7 +7,17 @@
       "mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_pages",
       "Bash(curl -s -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"What does antm.ai do?\",\"model\":\"z-ai/glm4.7\",\"history\":[]}' --no-buffer)",
       "Bash(open *)",
-      "Bash(curl -s https://blog.sanathswaroop.com/rss.xml)"
+      "Bash(curl -s https://blog.sanathswaroop.com/rss.xml)",
+      "Bash(curl -s \"https://ollama.com/api/tags\" -H \"Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYYdQpPflSZI\")",
+      "Bash(curl -s -X POST https://cloud.ollama.com/api/chat -H 'Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYyYdQpPflSZI' -H 'Content-Type: application/json' -d '{\"model\":\"gemma4:31b\",\"messages\":[{\"role\":\"user\",\"content\":\"Say hello in 5 words\"}],\"stream\":false}')",
+      "Bash(curl -sv -X POST https://cloud.ollama.com/api/chat -H 'Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYyYdQpPflSZI' -H 'Content-Type: application/json' -d '{\"model\":\"gemma4:31b\",\"messages\":[{\"role\":\"user\",\"content\":\"Say hello in 5 words\"}],\"stream\":false}')",
+      "Bash(curl -sv https://ollama.com/api/chat -X POST -H 'Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYyYdQpPflSZI' -H 'Content-Type: application/json' -d '{\"model\":\"gemma4:31b\",\"messages\":[{\"role\":\"user\",\"content\":\"Say hello in 5 words\"}],\"stream\":false}')",
+      "Bash(curl -s -X POST https://ollama.com/api/chat -H 'Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYyYdQpPflSZI' -H 'Content-Type: application/json' -d '{\"model\":\"glm-5\",\"messages\":[{\"role\":\"user\",\"content\":\"Say hello in 5 words\"}],\"stream\":false}')",
+      "Bash(curl -s -X POST https://ollama.com/api/chat -H 'Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYyYdQpPflSZI' -H 'Content-Type: application/json' -d '{\"model\":\"deepseek-v4-flash\",\"messages\":[{\"role\":\"user\",\"content\":\"Say hello in 5 words\"}],\"stream\":false}')",
+      "Bash(wait)",
+      "Bash(curl -s -X POST https://ollama.com/api/chat -H 'Authorization: Bearer e33df6bd3ec74516bebcb76c61079e3f.zPaTmZEXhCSMYyYdQpPflSZI' -H 'Content-Type: application/json' -d '{\"model\":\"__TRACKED_VAR__\",\"messages\":[{\"role\":\"user\",\"content\":\"Say hi in 3 words\"}],\"stream\":false}')",
+      "Bash(curl *)",
+      "Bash(pkill -f \"next dev\")"
     ]
   }
 }

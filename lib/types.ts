@@ -1,14 +1,21 @@
 import type { ProjectId } from "./projects";
 
-export type NimModel = "z-ai/glm4.7" | "google/gemma-3n-e4b-it" | "mistralai/mistral-medium-3.5-128b";
+export type NimModel = "glm-4.7" | "gemma4:31b" | "deepseek-v3.2";
 
 export const NIM_MODELS: { id: NimModel; label: string; alias: string }[] = [
-  { id: "z-ai/glm4.7", label: "glm-4.7", alias: "glm" },
-  { id: "google/gemma-3n-e4b-it", label: "gemma-3n-e4b", alias: "gemma" },
-  { id: "mistralai/mistral-medium-3.5-128b", label: "mistral-medium-3.5", alias: "mistral" },
+  { id: "glm-4.7", label: "glm-4.7", alias: "glm" },
+  { id: "gemma4:31b", label: "gemma 31b", alias: "gemma" },
+  { id: "deepseek-v3.2", label: "deepseek-v3.2", alias: "deepseek" },
 ];
 
-export const DEFAULT_MODEL: NimModel = "z-ai/glm4.7";
+export const DEFAULT_MODEL: NimModel = "glm-4.7";
+
+// NIM fallback model IDs used when Ollama is rate-limited
+export const NIM_FALLBACK_MODELS: Record<NimModel, string> = {
+  "glm-4.7": "z-ai/glm4.7",
+  "gemma4:31b": "google/gemma-3n-e4b-it",
+  "deepseek-v3.2": "mistralai/mistral-medium-3.5-128b",
+};
 
 export type SectionId =
   | "whoami"

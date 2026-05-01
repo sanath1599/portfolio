@@ -1,5 +1,3 @@
-import type { NimModel } from "@/lib/types";
-
 const NIM_BASE = "https://integrate.api.nvidia.com/v1";
 
 export type NimMessage = {
@@ -28,7 +26,7 @@ type NimResponse = {
 
 export async function callNIM(
   messages: NimMessage[],
-  model: NimModel,
+  model: string,
   tools: unknown[],
 ): Promise<NimResponse> {
   const res = await fetch(`${NIM_BASE}/chat/completions`, {
@@ -43,7 +41,7 @@ export async function callNIM(
       tools: tools.length > 0 ? tools : undefined,
       tool_choice: tools.length > 0 ? "auto" : undefined,
       stream: false,
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature: 0.6,
     }),
   });
@@ -58,7 +56,7 @@ export async function callNIM(
 
 export async function streamNIM(
   messages: NimMessage[],
-  model: NimModel,
+  model: string,
   tools: unknown[],
 ): Promise<ReadableStream<Uint8Array>> {
   const res = await fetch(`${NIM_BASE}/chat/completions`, {
@@ -74,7 +72,7 @@ export async function streamNIM(
       tools: tools.length > 0 ? tools : undefined,
       tool_choice: tools.length > 0 ? "auto" : undefined,
       stream: true,
-      max_tokens: 4096,
+      max_tokens: 8192,
       temperature: 0.6,
       reasoning_effort: "low",
     }),
