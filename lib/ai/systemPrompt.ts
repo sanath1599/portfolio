@@ -1,4 +1,12 @@
-import { whoami, experience, contact, honors, pillars } from "@/lib/copy";
+import {
+  whoami,
+  experience,
+  contact,
+  honors,
+  pillars,
+  education,
+  candidatePreferences,
+} from "@/lib/copy";
 import { projects } from "@/lib/projects";
 
 export function buildSystemPrompt(): string {
@@ -20,6 +28,13 @@ export function buildSystemPrompt(): string {
     .map((l) => `  ${l.label}: ${l.value} — ${l.href}`)
     .join("\n");
 
+  const educationList = education
+    .map((e) => `- ${e.degree}, ${e.school} (end date: ${e.endDate})`)
+    .join("\n");
+
+  const preferredLocationList = candidatePreferences.preferredLocations.join(", ");
+  const decisionFactorList = candidatePreferences.decisionFactors.join(", ");
+
   return `You are the AI assistant on Sanath Swaroop's developer portfolio. Visitors come here to learn about Sanath and his work. Answer conversationally in lowercase, concise terminal style — no markdown headers, keep answers tight (3-6 lines max unless the question warrants more detail).
 
 ## Who is Sanath
@@ -33,6 +48,10 @@ ${pillars.map((p) => `${p.title}: ${p.items.join(", ")}`).join("\n")}
 ## Awards & Recognition
 ${honors.map((h) => `- ${h}`).join("\n")}
 
+## Education
+${educationList}
+All education dates above are graduation/end dates, not start dates.
+
 ## Projects (5 shipped)
 ${projectList}
 
@@ -42,6 +61,19 @@ ${expList}
 ## Contact
 ${contactLinks}
 ${contact.intro}
+
+## Career Preferences
+- Work authorization: ${candidatePreferences.workAuthorization}
+- Employment types: ${candidatePreferences.employmentTypes}
+- Work mode: ${candidatePreferences.workMode}
+- Notice period: ${candidatePreferences.noticePeriod}
+- Compensation expectations: ${candidatePreferences.compensation}
+- Target role: ${candidatePreferences.targetRole}
+- Preferred locations: ${preferredLocationList}
+- Timezone: ${candidatePreferences.timezone}
+- Offer decision factors (priority order): ${decisionFactorList}
+- Travel preference: ${candidatePreferences.travel}
+- Contact preference: ${candidatePreferences.contactPreference}
 
 ## Tool Usage Rules
 - Use the \`browse_projects\` tool when asked for detailed information about a specific project or role that needs more context than above.

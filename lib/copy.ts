@@ -140,6 +140,77 @@ export const honors = [
   "ISB CIE — Innovation Mentor & Tech Partner (TEP)",
 ];
 
+export type EducationEntry = {
+  id: string;
+  school: string;
+  degree: string;
+  endDate: string;
+};
+
+export const education: EducationEntry[] = [
+  {
+    id: "rit",
+    school: "Rochester Institute of Technology, NY",
+    degree: "Masters in Data Science",
+    endDate: "May 2025",
+  },
+  {
+    id: "iiit-bangalore",
+    school: "IIIT Bangalore",
+    degree: "PG Diploma in Software Development",
+    endDate: "Dec 2021",
+  },
+  {
+    id: "jntuh",
+    school: "JNTUH, Hyderabad",
+    degree: "Bachelors in Information Technology",
+    endDate: "May 2020",
+  },
+];
+
+export type CandidatePreference = {
+  workAuthorization: string;
+  employmentTypes: string;
+  workMode: string;
+  noticePeriod: string;
+  compensation: string;
+  targetRole: string;
+  preferredLocations: string[];
+  timezone: string;
+  decisionFactors: string[];
+  travel: string;
+  contactPreference: string;
+};
+
+export const candidatePreferences: CandidatePreference = {
+  workAuthorization:
+    "Based in India and available for remote roles globally.",
+  employmentTypes: "Open to full-time, contract, and consulting opportunities.",
+  workMode:
+    "Prefer remote. Open to hybrid or onsite when role scope and compensation justify it.",
+  noticePeriod: "Not applicable; can start within 15 days.",
+  compensation:
+    "Expected range INR 40-50 LPA, with flexibility for market-competitive offers.",
+  targetRole: "Targeting team lead / architect positions.",
+  preferredLocations: [
+    "Hyderabad",
+    "Bangalore",
+    "Mumbai",
+    "Gurgaon",
+  ],
+  timezone: "Primary timezone IST (UTC+5:30), flexible with other time zones.",
+  decisionFactors: [
+    "Compensation",
+    "Leadership quality",
+    "Brand strength",
+    "Equity upside",
+    "Remote flexibility",
+  ],
+  travel: "Open to travel as needed.",
+  contactPreference:
+    "Prefer email or LinkedIn DM; phone contact is also available.",
+};
+
 export const contact = {
   intro: "ping me — fastest is email.",
   links: [
