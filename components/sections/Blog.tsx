@@ -1,9 +1,21 @@
-import { fetchBlog } from "@/lib/blog";
+"use client";
+
+import { useEffect, useState } from "react";
+import type { BlogPost } from "@/lib/blog";
 import { BlogList } from "./BlogList";
 import { SectionAnchor } from "./SectionAnchor";
 
-export async function Blog() {
-  const posts = await fetchBlog();
+export function Blog() {
+  const [posts, setPosts] = useState<BlogPost[] | null>(null);
+
+  useEffect(() => {
+    fetch("/api/blog")
+      .then((r) => r.json())
+      .then((data: BlogPost[]) => setPosts(data))
+      .catch(() => setPosts([]));
+  }, []);
+
+  const empty = posts !== null && posts.length === 0;
 
   return (
     <section className="bg-bg-0">
@@ -26,7 +38,15 @@ export async function Blog() {
           <span className="text-text-3">↗</span>
         </div>
 
-        {posts.length === 0 ? (
+        {posts === null ? (
+          <div className="rounded-md border border-border bg-bg-1/50 backdrop-blur-sm overflow-hidden">
+            <div className="px-5 py-6 space-y-2 animate-pulse">
+              <div className="h-3 w-1/3 rounded bg-bg-2/60" />
+              <div className="h-3 w-2/3 rounded bg-bg-2/60" />
+              <div className="h-3 w-1/2 rounded bg-bg-2/60" />
+            </div>
+          </div>
+        ) : empty ? (
           <div className="rounded-md border border-border bg-bg-1/50 backdrop-blur-sm overflow-hidden">
             <div className="px-5 py-6 space-y-3">
               <p className="text-[13.5px] text-text-2">
