@@ -297,6 +297,6 @@ export const showcaseChat: ChatAnswer[] = [
 
 export const welcomeLines = [
   "claude-code v1.4.0 — assistant terminal",
-  "loaded context: ./portfolio (5 projects, 5 roles)",
+  "loaded context: ./portfolio (6 projects, 5 roles)",
   "ready. ask me anything in plain english — i'll answer.",
 ];

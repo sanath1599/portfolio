@@ -117,6 +117,20 @@ export function ProjectModal() {
               <span className="text-text-2">{project.title}</span>
               <span className="text-text-3">·</span>
               <span className="truncate">{project.url}</span>
+              {project.repoUrl && (
+                <>
+                  <span className="text-text-3">·</span>
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-pointer="true"
+                    className="text-warm underline-offset-4 hover:underline"
+                  >
+                    source ↗
+                  </a>
+                </>
+              )}
               <span className="ml-auto hidden items-center gap-3 sm:flex">
                 <span>
                   <kbd className="rounded border border-border bg-bg-2 px-1 py-px text-[10px]">

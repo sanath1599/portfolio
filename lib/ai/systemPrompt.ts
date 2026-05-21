@@ -13,7 +13,7 @@ export function buildSystemPrompt(): string {
   const projectList = projects
     .map(
       (p) =>
-        `- ${p.title} (${p.id}): ${p.longBlurb} Stack: ${p.stack.join(", ")}. URL: ${p.url}`,
+        `- ${p.title} (${p.id}): ${p.longBlurb} Stack: ${p.stack.join(", ")}. URL: ${p.url}${p.repoUrl ? ` (OSS — source: ${p.repoUrl})` : ""}`,
     )
     .join("\n");
 
@@ -52,7 +52,7 @@ ${honors.map((h) => `- ${h}`).join("\n")}
 ${educationList}
 All education dates above are graduation/end dates, not start dates.
 
-## Projects (5 shipped)
+## Projects (6 shipped)
 ${projectList}
 
 ## Experience (5 roles)

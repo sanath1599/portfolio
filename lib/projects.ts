@@ -1,4 +1,4 @@
-export type ProjectId = "antm" | "c0py" | "motiv8" | "ellie" | "aipt";
+export type ProjectId = "ultramem" | "antm" | "c0py" | "motiv8" | "ellie" | "aipt";
 
 export type ProjectStatus = "RUNNING" | "ARCHIVED" | "PRIVATE";
 
@@ -9,6 +9,8 @@ export type Project = {
   /** path-like sub-label shown after the title, e.g. "./c0py" */
   pathLabel: string;
   url: string;
+  /** optional source repo (rendered alongside the deployment URL for OSS projects) */
+  repoUrl?: string;
   image: string;
   blurb: string;
   longBlurb: string;
@@ -26,6 +28,19 @@ const seed = (s: string) => {
 const make = (p: Omit<Project, "pid">): Project => ({ ...p, pid: `0x${seed(p.id)}` });
 
 export const projects: Project[] = [
+  make({
+    id: "ultramem",
+    title: "UltraMem",
+    pathLabel: "./ultramem",
+    url: "https://notes.sanathswaroop.com/",
+    repoUrl: "https://github.com/sanath1599/UltraMem",
+    image: "/images/ultramem.png",
+    blurb: "AI note-taker with memory graph & RAG.",
+    longBlurb:
+      "Upload or record audio in-browser, get a clean transcript via AssemblyAI, a Markdown summary, extracted action items, and time-bound reminders via Ollama (gemma3:27b). Share read-only or commenting links; reminders fire by email (Resend) and Web Push. OSS and self-hostable.",
+    stack: ["AI", "RAG", "Memory Graph", "AssemblyAI", "Ollama", "OSS"],
+    status: "RUNNING",
+  }),
   make({
     id: "c0py",
     title: "c0py.me",

@@ -15,7 +15,7 @@ export const TOOL_DEFINITIONS = [
           query: {
             type: "string",
             description:
-              "Optional filter: project name (antm, c0py, motiv8, aipt, ellie) or company (npci, statwig, excelerate, motiv8, buildup) or technology",
+              "Optional filter: project name (ultramem, antm, c0py, motiv8, aipt, ellie) or company (npci, statwig, excelerate, motiv8, buildup) or technology",
           },
         },
         required: [],
@@ -70,6 +70,7 @@ function browseProjects(query?: string): unknown {
       id: p.id,
       title: p.title,
       url: p.url,
+      repoUrl: p.repoUrl,
       blurb: p.longBlurb,
       stack: p.stack,
       status: p.status,
