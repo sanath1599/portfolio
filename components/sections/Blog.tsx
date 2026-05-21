@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchBlogClient, type BlogPost } from "@/lib/blog-client";
+import type { BlogPost } from "@/lib/blog";
 import { BlogList } from "./BlogList";
 import { SectionAnchor } from "./SectionAnchor";
 
@@ -9,9 +9,18 @@ export function Blog() {
   const [posts, setPosts] = useState<BlogPost[] | null>(null);
 
   useEffect(() => {
-    fetchBlogClient()
-      .then((data) => setPosts(data))
-      .catch(() => setPosts([]));
+    let cancelled = false;
+    fetch("/api/blog")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: BlogPost[]) => {
+        if (!cancelled) setPosts(Array.isArray(data) ? data : []);
+      })
+      .catch(() => {
+        if (!cancelled) setPosts([]);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const empty = posts !== null && posts.length === 0;
